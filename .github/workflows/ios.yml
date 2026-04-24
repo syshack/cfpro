@@ -36,16 +36,27 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" -derivedDataPath build/DerivedData
-      - name: Package app bundle
+      - name: Build iOS device app
+        env:
+          scheme: ${{ 'default' }}
+        run: |
+          if [ $scheme = default ]; then scheme=$(cat default); fi
+          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          xcodebuild build -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -configuration Release -destination "generic/platform=iOS" -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO
+      - name: Package unsigned IPA
         run: |
           mkdir -p dist
-          app_path=$(find build/DerivedData/Build/Products -name "*.app" | head -1)
+          app_path=$(find build/DerivedData/Build/Products/Release-iphoneos -name "*.app" | head -1)
           if [ -z "$app_path" ]; then
-            echo "No .app found under build/DerivedData/Build/Products"
+            echo "No device .app found under build/DerivedData/Build/Products/Release-iphoneos"
             exit 1
           fi
-          zip -qry dist/ShadowsocksClient-iphonesimulator.zip "$app_path"
-          shasum -a 256 dist/ShadowsocksClient-iphonesimulator.zip > dist/SHA256SUMS.txt
+          mkdir -p dist/Payload
+          cp -R "$app_path" dist/Payload/
+          (cd dist && zip -qry ShadowsocksClient-unsigned.ipa Payload)
+          rm -rf dist/Payload
+          shasum -a 256 dist/ShadowsocksClient-unsigned.ipa > dist/SHA256SUMS.txt
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
@@ -80,7 +91,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/ShadowsocksClient-iphonesimulator.zip
+            dist/ShadowsocksClient-unsigned.ipa
             dist/SHA256SUMS.txt
       - name: Publish rolling main release
         if: github.ref == 'refs/heads/main'
@@ -91,5 +102,5 @@ jobs:
           prerelease: true
           make_latest: false
           files: |
-            dist/ShadowsocksClient-iphonesimulator.zip
+            dist/ShadowsocksClient-unsigned.ipa
             dist/SHA256SUMS.txt
