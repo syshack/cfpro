@@ -25,7 +25,7 @@ struct Config: Codable {
     self.secret = secret
   }
 
-  init(from decoder: any Decoder) throws {
+  init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     host = try container.decode(String.self, forKey: .host)

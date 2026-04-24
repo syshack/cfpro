@@ -43,7 +43,7 @@ final class Tunnel: Codable {
     )
   }
 
-  convenience init(from decoder: any Decoder) throws {
+  convenience init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     let id = try container.decode(String.self, forKey: .id)
@@ -56,7 +56,7 @@ final class Tunnel: Codable {
     self.init(id: id, host: host, port: port, secret: secret)
   }
 
-  func encode(to encoder: any Encoder) throws {
+  func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(id, forKey: .id)
     try container.encode(host, forKey: .host)
