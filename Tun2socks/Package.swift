@@ -9,7 +9,7 @@ let package = Package(
     .binaryTarget(
       name: "Tun2socks",
       url: "https://github.com/syshack/outline-go-tun2socks/releases/download/v1/apple.zip",
-      checksum: "a430068d57eaf1ac1d9ebdd71297c022ba42fe45e0fa521475c5a4d8c241b38b"
+      checksum: "addca37b3368ee41cd4f128938929532b55a3d84cff72f6454a67fedc9bdb773"
     ),
   ]
 )
