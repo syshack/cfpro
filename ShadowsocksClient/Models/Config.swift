@@ -34,6 +34,13 @@ struct Config: Codable {
       ?? container.decodeIfPresent(String.self, forKey: .password)
       ?? ""
   }
+
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(host, forKey: .host)
+    try container.encode(port, forKey: .port)
+    try container.encode(secret, forKey: .secret)
+  }
 }
 
 extension Config {
