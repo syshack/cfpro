@@ -23,8 +23,7 @@ struct ServerDetailsView: View {
   @State private var url = ""
   @State private var host = ""
   @State private var port = ""
-  @State private var method = Method.rc4Md5
-  @State private var password = ""
+  @State private var secret = ""
   @State private var errorMessage: LocalizedStringResource?
   @State private var isShowingAlert = false
   
@@ -37,7 +36,7 @@ struct ServerDetailsView: View {
     case .accessKey:
       return title.isEmpty || url.isEmpty
     case .config:
-      return title.isEmpty || host.isEmpty || port.isEmpty || password.isEmpty
+      return title.isEmpty || host.isEmpty || port.isEmpty || secret.isEmpty
     }
   }
   
@@ -82,17 +81,12 @@ struct ServerDetailsView: View {
         
         switch configureType {
         case .accessKey:
-          InputFieldRow(text: $url, label: "URL", placeholder: "ss://access-key")
+          InputFieldRow(text: $url, label: "URL", placeholder: "cf://secret@example.com:443")
           
         case .config:
-          Picker("Method", selection: $method) {
-            ForEach(Method.allCases, id: \.self) { Text($0.rawValue) }
-          }
-          .pickerStyle(.menu)
-          
           InputFieldRow(text: $host, label: "Host", placeholder: "0.0.0.0")
           InputFieldRow(text: $port, label: "Port", placeholder: "5555")
-          InputFieldRow(text: $password, label: "Password", placeholder: "Password")
+          InputFieldRow(text: $secret, label: "Secret", placeholder: "Secret")
         }
       }
     }
@@ -114,8 +108,7 @@ struct ServerDetailsView: View {
         country = server.country
         host = server.config.host
         port = server.config.port
-        method = server.config.method
-        password = server.config.password
+        secret = server.config.secret
       }
     }
     .alert(isPresented: $isShowingAlert) {
@@ -155,8 +148,7 @@ struct ServerDetailsView: View {
       config = Config(
         host: host,
         port: port,
-        method: method,
-        password: password
+        secret: secret
       )
     }
     

@@ -46,7 +46,7 @@ final class PacketTunnelProvider: NEPacketTunnelProvider {
         return
       }
       
-      ShadowsocksCheckConnectivity(client, &error, nil)
+      CfCheckConnectivity(client, &error, nil)
     }
     
     let errorCode = ErrorCode(rawValue: error) ?? .undefinedError
@@ -152,16 +152,14 @@ final class PacketTunnelProvider: NEPacketTunnelProvider {
     return tunnel
   }
   
-  func getClient() -> ShadowsocksClient? {
+  func getClient() -> CfClient? {
     guard let hostNetworkAddress, let tunnel else { return nil }
     
-    let config = ShadowsocksConfig()
-    config.host = hostNetworkAddress
-    config.port = Int(tunnel.port) ?? 0
-    config.password = tunnel.password
-    config.cipherName = tunnel.method
+    let config = CfConfig()
+    config.endpoint = "\(hostNetworkAddress):\(tunnel.port)"
+    config.secret = tunnel.secret
     
-    return ShadowsocksNewClient(config, nil)
+    return CfNewClient(config, nil)
   }
   
   func connectTunnel(settings: NEPacketTunnelNetworkSettings?, completion completionHandler: (((any Error)?) -> Void)?) {
@@ -228,7 +226,7 @@ final class PacketTunnelProvider: NEPacketTunnelProvider {
     }
     
     var error = 0
-    ShadowsocksCheckConnectivity(client, &error, nil)
+    CfCheckConnectivity(client, &error, nil)
     
     let errorCode = ErrorCode(rawValue: error) ?? .undefinedError
     
@@ -290,7 +288,7 @@ final class PacketTunnelProvider: NEPacketTunnelProvider {
     
     weak var weakSelf = self
     var error: NSError?
-    tun2socksTunnel = Tun2socksConnectShadowsocksTunnel(weakSelf, client, isUdpSupported, &error)
+    tun2socksTunnel = Tun2socksConnectCFTunnel(weakSelf, client, isUdpSupported, &error)
     
     if error != nil {
       return false

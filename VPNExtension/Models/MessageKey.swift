@@ -14,7 +14,6 @@ enum MessageKey: String {
   case errorCode = "errorCode"
   case host = "host"
   case port = "port"
-  case password = "password"
-  case method = "method"
+  case secret = "secret"
   case onDemand = "is-on-demand"
 }
