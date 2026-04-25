@@ -21,6 +21,39 @@ jobs:
           if [ "`ls -A | grep -i \.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           xcodebuild build -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -configuration Release -destination "generic/platform=iOS" -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO
+      - name: Verify Tun2socks linkage before packaging
+        run: |
+          appex_path=$(find build/DerivedData/Build/Products/Release-iphoneos -name "VPNExtension.appex" | head -1)
+          if [ -z "$appex_path" ]; then
+            echo "VPNExtension.appex not found in Release-iphoneos output"
+            exit 1
+          fi
+
+          ext_executable=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$appex_path/Info.plist")
+          ext_binary="$appex_path/$ext_executable"
+          if [ ! -f "$ext_binary" ]; then
+            echo "VPN extension binary not found: $ext_binary"
+            exit 1
+          fi
+
+          echo "Checking linked libraries for Tun2socks in: $ext_binary"
+          linked_libs=$(otool -L "$ext_binary")
+          echo "$linked_libs"
+
+          if echo "$linked_libs" | grep -q "Tun2socks"; then
+            if [ ! -d "$appex_path/Frameworks/Tun2socks.framework" ] && [ ! -e "$appex_path/Frameworks/Tun2socks" ]; then
+              echo "Tun2socks is linked but not embedded inside VPNExtension.appex/Frameworks"
+              exit 1
+            fi
+            echo "Tun2socks dynamic linkage and embedding verified"
+          else
+            echo "Tun2socks not found in dynamic libs; checking CF tunnel symbols in extension binary"
+            if ! nm -u "$ext_binary" | grep -qE "_(CfNewClient|Tun2socksConnectCFTunnel|CfCheckConnectivity)"; then
+              echo "Tun2socks symbols not found; VPNExtension does not appear to use Tun2socks"
+              exit 1
+            fi
+            echo "Tun2socks usage verified via unresolved CF tunnel symbols"
+          fi
       - name: Package unsigned IPA
         run: |
           mkdir -p dist
