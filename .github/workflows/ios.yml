@@ -56,7 +56,43 @@ jobs:
           cp -R "$app_path" dist/Payload/
           (cd dist && zip -qry CFPro-unsigned.ipa Payload)
           rm -rf dist/Payload
+      - name: Install ldid for TrollStore packaging
+        run: brew install ldid
+      - name: Package TrollStore IPA
+        run: |
+          app_path=$(find build/DerivedData/Build/Products/Release-iphoneos -name "*.app" | head -1)
+          if [ -z "$app_path" ]; then
+            echo "No device .app found under build/DerivedData/Build/Products/Release-iphoneos"
+            exit 1
+          fi
+          rm -rf dist/Payload
+          mkdir -p dist/Payload
+          cp -R "$app_path" dist/Payload/
+
+          main_app=$(find dist/Payload -maxdepth 1 -name "*.app" | head -1)
+          if [ -z "$main_app" ]; then
+            echo "No app found under dist/Payload"
+            exit 1
+          fi
+
+          find "$main_app" -type f \( -perm -111 -o -name "*.dylib" \) -print0 | while IFS= read -r -d '' file; do
+            ldid -S "$file" || true
+          done
+
+          app_executable=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$main_app/Info.plist")
+          ldid -S"ShadowsocksClient/ShadowsocksClient.entitlements" "$main_app/$app_executable"
+
+          for appex in "$main_app"/PlugIns/*.appex; do
+            [ -d "$appex" ] || continue
+            ext_executable=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$appex/Info.plist")
+            ldid -S"VPNExtension/VPNExtension.entitlements" "$appex/$ext_executable"
+          done
+
+          (cd dist && zip -qry CFPro-trollstore.ipa Payload)
+          rm -rf dist/Payload
+
           shasum -a 256 dist/CFPro-unsigned.ipa > dist/SHA256SUMS.txt
+          shasum -a 256 dist/CFPro-trollstore.ipa >> dist/SHA256SUMS.txt
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
@@ -92,6 +128,7 @@ jobs:
         with:
           files: |
             dist/CFPro-unsigned.ipa
+            dist/CFPro-trollstore.ipa
             dist/SHA256SUMS.txt
       - name: Publish rolling main release
         if: github.ref == 'refs/heads/main'
@@ -103,4 +140,5 @@ jobs:
           make_latest: false
           files: |
             dist/CFPro-unsigned.ipa
+            dist/CFPro-trollstore.ipa
             dist/SHA256SUMS.txt
