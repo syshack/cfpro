@@ -8,39 +8,26 @@ permissions:
 
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: Build and package CFPro
     runs-on: macos-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set Default Scheme
-        run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; j = JSON.parse(STDIN.gets); puts((j.dig('project', 'schemes') || j.dig('workspace', 'schemes') || j.dig('project', 'targets') || [])[0])")
-          if [ -z "$default" ]; then
-            echo "Could not resolve any scheme from xcodebuild -list -json"
-            exit 1
-          fi
-          echo $default | cat >default
-          echo Using default scheme: $default
-      - name: Build
+      - name: Build simulator target
         env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
+          scheme: CFPro
+          platform: iOS Simulator
         run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
           device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          if [ "`ls -A | grep -i \.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device" -derivedDataPath build/DerivedData
       - name: Build iOS device app
         env:
-          scheme: ${{ 'default' }}
+          scheme: CFPro
         run: |
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          if [ "`ls -A | grep -i \.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           xcodebuild build -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -configuration Release -destination "generic/platform=iOS" -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO
       - name: Package unsigned IPA
@@ -98,21 +85,9 @@ jobs:
           name: ios-build
           path: dist/*
           if-no-files-found: error
-      # - name: Test
-      #   env:
-      #     scheme: ${{ 'default' }}
-      #     platform: ${{ 'iOS Simulator' }}
-      #   run: |
-      #     # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
-      #     device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-      #     if [ $scheme = default ]; then scheme=$(cat default); fi
-      #     if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
-      #     file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-      #     xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
 
   release:
     name: Publish GitHub Release assets
-    if: github.event_name != 'pull_request'
     needs: build
     runs-on: macos-latest
     steps:
@@ -121,16 +96,7 @@ jobs:
         with:
           name: ios-build
           path: dist
-      - name: Publish tagged release
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            dist/CFPro-unsigned.ipa
-            dist/CFPro-trollstore.ipa
-            dist/SHA256SUMS.txt
       - name: Publish rolling main release
-        if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ci-latest
