@@ -133,7 +133,7 @@
 		3994DD6D2C30421C00411827 /* ErrorCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorCode+.swift"; sourceTree = "<group>"; };
 		3994DD7E2C31A7D200411827 /* AppPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPath.swift; sourceTree = "<group>"; };
 		3994DD822C31A8A000411827 /* ServerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRow.swift; sourceTree = "<group>"; };
-		39A91D912C1B59E8009B769F /* Shadowsocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shadowsocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		39A91D912C1B59E8009B769F /* CFPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39A91D942C1B59E8009B769F /* ShadowsocksClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsocksClientApp.swift; sourceTree = "<group>"; };
 		39A91D962C1B59E8009B769F /* ServerConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConnectionView.swift; sourceTree = "<group>"; };
 		39A91D9A2C1B59EB009B769F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 		39A91D922C1B59E8009B769F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39A91D912C1B59E8009B769F /* Shadowsocks.app */,
+				39A91D912C1B59E8009B769F /* CFPro.app */,
 				392E3CAA2C2611E60060CE18 /* VPNExtension.appex */,
 			);
 			name = Products;
@@ -375,7 +375,7 @@
 			packageProductDependencies = (
 			);
 			productName = ShadowsocksClient;
-			productReference = 39A91D912C1B59E8009B769F /* Shadowsocks.app */;
+			productReference = 39A91D912C1B59E8009B769F /* CFPro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -524,7 +524,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.ShadowsocksClient.VPNExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.CFPro.VPNExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -561,7 +561,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.ShadowsocksClient.VPNExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.CFPro.VPNExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -730,7 +730,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.ShadowsocksClient;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.CFPro;
 				PRODUCT_NAME = CFPro;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -774,7 +774,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.ShadowsocksClient;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.CFPro;
 				PRODUCT_NAME = CFPro;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";

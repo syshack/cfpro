@@ -8,7 +8,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>ru.apriakhin.ShadowsocksClient</string>
+			<string>ru.apriakhin.CFPro</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ss</string>

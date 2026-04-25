@@ -105,8 +105,8 @@ private extension ShadowsocksManager {
       
     } else {
       let config = NETunnelProviderProtocol()
-      config.providerBundleIdentifier = "ru.apriakhin.ShadowsocksClient.VPNExtension"
-      config.serverAddress = "Shadowsocks"
+      config.providerBundleIdentifier = "ru.apriakhin.CFPro.VPNExtension"
+      config.serverAddress = "CFPro"
       manager = NETunnelProviderManager()
       manager.protocolConfiguration = config
     }

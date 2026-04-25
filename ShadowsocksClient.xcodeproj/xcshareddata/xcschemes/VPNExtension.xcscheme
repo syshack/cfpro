@@ -31,7 +31,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "39A91D902C1B59E8009B769F"
-               BuildableName = "Shadowsocks.app"
+               BuildableName = "CFPro.app"
                BlueprintName = "ShadowsocksClient"
                ReferencedContainer = "container:ShadowsocksClient.xcodeproj">
             </BuildableReference>
@@ -72,14 +72,14 @@
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "ru.apriakhin.ShadowsocksClient"
+         BundleIdentifier = "ru.apriakhin.CFPro"
          RemotePath = "/var/containers/Bundle/Application/487F6550-68DF-4BB0-8575-9F6B115D0D54/Shadow.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "39A91D902C1B59E8009B769F"
-            BuildableName = "Shadowsocks.app"
+            BuildableName = "CFPro.app"
             BlueprintName = "ShadowsocksClient"
             ReferencedContainer = "container:ShadowsocksClient.xcodeproj">
          </BuildableReference>
@@ -98,7 +98,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "39A91D902C1B59E8009B769F"
-            BuildableName = "Shadowsocks.app"
+            BuildableName = "CFPro.app"
             BlueprintName = "ShadowsocksClient"
             ReferencedContainer = "container:ShadowsocksClient.xcodeproj">
          </BuildableReference>
