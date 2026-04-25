@@ -17,7 +17,11 @@ jobs:
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+          default=$(echo $scheme_list | ruby -e "require 'json'; j = JSON.parse(STDIN.gets); puts((j.dig('project', 'schemes') || j.dig('workspace', 'schemes') || j.dig('project', 'targets') || [])[0])")
+          if [ -z "$default" ]; then
+            echo "Could not resolve any scheme from xcodebuild -list -json"
+            exit 1
+          fi
           echo $default | cat >default
           echo Using default scheme: $default
       - name: Build
