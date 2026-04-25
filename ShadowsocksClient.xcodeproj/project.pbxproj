@@ -715,7 +715,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShadowsocksClient/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Shadowsocks;
+				INFOPLIST_KEY_CFBundleDisplayName = CFPro;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = NO;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -731,7 +731,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.ShadowsocksClient;
-				PRODUCT_NAME = Shadowsocks;
+				PRODUCT_NAME = CFPro;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -759,7 +759,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShadowsocksClient/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Shadowsocks;
+				INFOPLIST_KEY_CFBundleDisplayName = CFPro;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = NO;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -775,7 +775,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.apriakhin.ShadowsocksClient;
-				PRODUCT_NAME = Shadowsocks;
+				PRODUCT_NAME = CFPro;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
