@@ -25,7 +25,6 @@
 		39207F1E2C3344DF000EB919 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39207EF62C334346000EB919 /* Functions.swift */; };
 		392E3CA02C2603EA0060CE18 /* InputFieldRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E3C9F2C2603EA0060CE18 /* InputFieldRow.swift */; };
 		392E3CC82C2619370060CE18 /* Tun2socks in Frameworks */ = {isa = PBXBuildFile; productRef = 392E3CC72C2619370060CE18 /* Tun2socks */; };
-		392E3CD42C4000010060CE18 /* Tun2socks in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 392E3CC72C2619370060CE18 /* Tun2socks */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		392E3CD12C26EE6F0060CE18 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E3CD02C26EE6F0060CE18 /* DataManager.swift */; };
 		392E3CD32C26F1DF0060CE18 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E3CD22C26F1DF0060CE18 /* DependencyFactory.swift */; };
 		392E3CD72C27953F0060CE18 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 392E3CD62C27953F0060CE18 /* Localizable.xcstrings */; };
@@ -79,7 +78,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				392E3CD42C4000010060CE18 /* Tun2socks in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
