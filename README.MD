@@ -127,7 +127,7 @@ Key Features:
    ```sh
    git clone git@github.com:apriakhin/shadowsocks-client.git
    ```
-2. Open `ShadowsocksClient.xcodeproj`
+2. Open `CFPro.xcodeproj`
 
 3. Start project
 

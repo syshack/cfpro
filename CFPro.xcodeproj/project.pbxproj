@@ -37,7 +37,7 @@
 		3994DD6E2C30421C00411827 /* ErrorCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994DD6D2C30421C00411827 /* ErrorCode+.swift */; };
 		3994DD7F2C31A7D200411827 /* AppPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994DD7E2C31A7D200411827 /* AppPath.swift */; };
 		3994DD832C31A8A000411827 /* ServerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994DD822C31A8A000411827 /* ServerRow.swift */; };
-		39A91D952C1B59E8009B769F /* ShadowsocksClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A91D942C1B59E8009B769F /* ShadowsocksClientApp.swift */; };
+		39A91D952C1B59E8009B769F /* CFProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A91D942C1B59E8009B769F /* CFProApp.swift */; };
 		39A91D972C1B59E8009B769F /* ServerConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A91D962C1B59E8009B769F /* ServerConnectionView.swift */; };
 		39A91D9B2C1B59EB009B769F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39A91D9A2C1B59EB009B769F /* Assets.xcassets */; };
 		39A91DC22C1B5BFA009B769F /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A91DC12C1B5BFA009B769F /* StatusView.swift */; };
@@ -120,7 +120,7 @@
 		392E3CB12C2611E60060CE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		392E3CB22C2611E60060CE18 /* VPNExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VPNExtension.entitlements; sourceTree = "<group>"; };
 		392E3CC92C261F080060CE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		392E3CCA2C261F710060CE18 /* ShadowsocksClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShadowsocksClient.entitlements; sourceTree = "<group>"; };
+		392E3CCA2C261F710060CE18 /* CFPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CFPro.entitlements; sourceTree = "<group>"; };
 		392E3CCC2C26EC8C0060CE18 /* ConnectToDefaultServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToDefaultServer.swift; sourceTree = "<group>"; };
 		392E3CCE2C26ECB60060CE18 /* DisconnectFromDefaultServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectFromDefaultServer.swift; sourceTree = "<group>"; };
 		392E3CD02C26EE6F0060CE18 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		3994DD7E2C31A7D200411827 /* AppPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPath.swift; sourceTree = "<group>"; };
 		3994DD822C31A8A000411827 /* ServerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRow.swift; sourceTree = "<group>"; };
 		39A91D912C1B59E8009B769F /* CFPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		39A91D942C1B59E8009B769F /* ShadowsocksClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsocksClientApp.swift; sourceTree = "<group>"; };
+		39A91D942C1B59E8009B769F /* CFProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFProApp.swift; sourceTree = "<group>"; };
 		39A91D962C1B59E8009B769F /* ServerConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConnectionView.swift; sourceTree = "<group>"; };
 		39A91D9A2C1B59EB009B769F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39A91DC12C1B5BFA009B769F /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
@@ -291,15 +291,15 @@
 				3952F2F92C1F514B008A611D /* Extensions */,
 				39A91DC02C1B5BD8009B769F /* Components */,
 				392E3CA42C260AAD0060CE18 /* Views */,
-				39A91D942C1B59E8009B769F /* ShadowsocksClientApp.swift */,
+				39A91D942C1B59E8009B769F /* CFProApp.swift */,
 				392E3CD22C26F1DF0060CE18 /* DependencyFactory.swift */,
 				39A91D9A2C1B59EB009B769F /* Assets.xcassets */,
 				392E3CD62C27953F0060CE18 /* Localizable.xcstrings */,
 				392E3CD82C28B9EB0060CE18 /* PrivacyInfo.xcprivacy */,
-				392E3CCA2C261F710060CE18 /* ShadowsocksClient.entitlements */,
+				392E3CCA2C261F710060CE18 /* CFPro.entitlements */,
 				392E3CC92C261F080060CE18 /* Info.plist */,
 			);
-			path = ShadowsocksClient;
+			path = CFPro;
 			sourceTree = "<group>";
 		};
 		39A91DC02C1B5BD8009B769F /* Components */ = {
@@ -485,7 +485,7 @@
 				39A91D972C1B59E8009B769F /* ServerConnectionView.swift in Sources */,
 				39207F042C3343BC000EB919 /* Config.swift in Sources */,
 				39A91DC22C1B5BFA009B769F /* StatusView.swift in Sources */,
-				39A91D952C1B59E8009B769F /* ShadowsocksClientApp.swift in Sources */,
+				39A91D952C1B59E8009B769F /* CFProApp.swift in Sources */,
 				39207F092C3343BC000EB919 /* Action.swift in Sources */,
 				39207EFA2C33435F000EB919 /* URLParser.swift in Sources */,
 				3952F2F82C1F4F2B008A611D /* String+.swift in Sources */,
@@ -705,7 +705,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ShadowsocksClient/ShadowsocksClient.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CFPro/CFPro.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -714,7 +714,7 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShadowsocksClient/Info.plist;
+				INFOPLIST_FILE = CFPro/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CFPro;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = NO;
@@ -749,7 +749,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ShadowsocksClient/ShadowsocksClient.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CFPro/CFPro.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -758,7 +758,7 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShadowsocksClient/Info.plist;
+				INFOPLIST_FILE = CFPro/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CFPro;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = NO;

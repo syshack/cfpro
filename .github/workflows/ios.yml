@@ -75,7 +75,7 @@ jobs:
           done
 
           app_executable=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$main_app/Info.plist")
-          ldid -S"ShadowsocksClient/ShadowsocksClient.entitlements" "$main_app/$app_executable"
+          ldid -S"CFPro/CFPro.entitlements" "$main_app/$app_executable"
 
           for appex in "$main_app"/PlugIns/*.appex; do
             [ -d "$appex" ] || continue

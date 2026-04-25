@@ -1,5 +1,5 @@
 //
-//  ShadowsocksClientApp.swift
+//  CFProApp.swift
 //  ShadowsocksClient
 //
 //  Created by Anton Priakhin on 13.06.2024.
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct ShadowsocksClientApp: App {
+struct CFProApp: App {
   private let dependencyFactory: DependencyFactory
   @State private var connection: Connection
   
